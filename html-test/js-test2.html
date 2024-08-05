@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자바스크립트 테스트</title>
+  </head>
+  <body>
+    <p>Click Me</p>
+    <script>
+      // # 객체
+      const obj = {
+        a: 1,
+        b: 25,
+        c: "안녕하세요",
+      };
+
+      const arr = [1, 2, 3, 4, 6, 7, 8, 9, 10];
+
+      const key = "a";
+
+      // 객체의 모든 요소를 꺼내고 싶습니다,.
+      // 객체의 키만 배열로 가져옵니다.
+      // document.write(Object.keys(arr));
+
+      // for (const element of arr) {
+      //   document.writeln(element, " ");
+      // }
+
+      // // 함수
+      // function add(a, b = 0) {
+      //   document.writeln("나는 함수");
+      //   return a + b;
+      // }
+      // document.writeln(add(3));
+
+      // const add2 = function (a, b) {
+      //   return a + b;
+      // };
+      // document.writeln(add2(100, 1000));
+
+      // const add3 = (a, b) => {
+      //   return a + b;
+      // };
+      // document.writeln(add3(100000, 30302140));
+
+      // // 함수형 프로그래밍 언어.
+      // // 함수를 변수처럼 사용할 수 있다.
+      // document.writeln(add2, " | ", add3);
+
+      // 자바스크립트 내장 함수
+      // forEach : 실행
+      arr.forEach(function (value) {
+        // document.writeln(value);
+      });
+
+      const result = arr.map(function (value) {
+        return value + 10;
+      });
+
+      // 배열 값에 처리를 해준 결과를 리턴한다.
+      // document.writeln(result);
+
+      // const filtered = arr.filter(value => {
+      //   return 10>value
+      // })
+
+      // 배열에 있는 값으 걸러서 배열로 표시
+      // document.writeln(filtered)
+
+      // 배열에 있는 숫자 중 10보다 작은 값을 찾아서
+      // " , "로 묶은 하나의 문자열을 반환
+      // [9,8,12,16] => '12,16'
+
+      // const filtered = arr.filter((value) => {
+      //   return 10 > value;
+      // });
+
+      // filtered = arr.filter((value) => value < 10).join(",");
+      
+      filtered = arr.filter((value) => {
+        return value < 10
+      }).join(",");
+      
+      document.writeln(filtered);
+      console.log(filtered);
+    </script>
+  </body>
+</html>

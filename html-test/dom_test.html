@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나는 DOM</title>
+
+    <style>
+      .red {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="content"></p>
+
+    <button id="click_me">Click Me</button>
+  </body>
+
+  <script>
+    // html 을 js 로 가져오는 방법
+    // document 객체
+    // document => DOM(HTML > 데이터화)
+    // const clickMe = document.getElementById("click_me");
+    // const text = clickMe.textContent;
+
+    // let text2 = clickMe.innerHTML // 보안적으로 위험하다. .innerHTML (x)
+    // clickMe.textContent = "hi";
+
+    const content = document.querySelector("#content");
+    const button = document.querySelector("#click_me");
+
+    // 이벤트 리스너에서 매개변수가 2개 필요
+    // 1. 이벤트 방식
+    // 2. 함수
+    function changeContent(e) {
+      content.textContent = "눌러서 나타났어요";
+      //   content.textContent = "나는 클릭";
+    }
+    button.addEventListener("click", (e) => {
+      content.textContent = "나는 화살표 함수";
+      content.classList.add('red')
+    //   content.style.backgroundColor = "red";
+    });
+  </script>
+</html>

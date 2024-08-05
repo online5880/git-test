@@ -1,0 +1,58 @@
+h1{
+    color: bisque;
+}
+
+p{
+    color: green;
+}
+
+li{
+    list-style-type:square;
+}
+
+li.special{
+    color: orange;
+    font-weight: bold;
+}
+
+li em{
+    color: rebeccapurple;
+}
+
+span.special{
+    color: orange;
+    font-weight: bold;
+}
+
+h1+p{
+    font-size: 200%;
+}
+
+a:link{
+    color: pink;
+}
+
+a:visited{
+    color: fuchsia;
+}
+
+#title{
+    text-decoration: solid;
+    color: aqua;
+}
+
+.outer {
+    border: 5px solid black;
+  }
+  
+  .box {
+    padding: 10px;
+    /* width: calc(90% - 30px); */
+    background-color: rgb(116, 63, 63);
+    color: white;
+
+    margin: 30px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(0.8turn);
+  }

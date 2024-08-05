@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나는 html2</title>
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+      }
+
+      a.anchor {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      div.container {
+        /* background-color: rgb(133, 52, 52); */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+      }
+
+      div.img-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      img.img-container__image {
+        width: 200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 순서가 없는 리스트 -->
+    <h1>처음 웹</h1>
+    <div class="container">
+      <!-- 앞에 리스트임을 의미하는 무언가가 생긴다.-->
+      <div class="container__column">
+        <h3>오늘 저녁 장보기 메뉴</h3>
+        <ul>
+          <li>우유</li>
+          <li>계란</li>
+          <li>빵</li>
+          <li>오트밀</li>
+        </ul>
+      </div>
+
+      <!-- 순서가 있기 때문에 자동으로 번호가 생긴다. -->
+      <div class="container__column">
+        <h3>오늘의 할일</h3>
+        <ol>
+          <li><em>강의하기</em></li>
+          <li><strong>오늘 목록 정리하기</strong></li>
+          <li>집에 가기</li>
+          <li>데이터베이스 수업 준비하기...</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="img-container">
+      <!-- 하이퍼링크는 다른 사이트로의 이동을 의미한다. -->
+      <a class="anchor" href="https://naver.com">나는 네이버</a>
+      <img
+        class="img-container__image"
+        src="https://media1.giphy.com/media/gEKz4VLX7fQlsl8SFE/giphy.webp"
+        alt=""
+      />
+    </div>
+  </body>
+</html>
