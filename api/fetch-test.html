@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch</title>
+  </head>
+  <body>
+    <h1>고양이</h1>
+    <button class="load">불러오기</button>
+    <div class="get-container">
+      <p class="get-container__type"></p>
+      <p class="get-container__text"></p>
+    </div>
+  </body>
+  <script>
+    const url = "https://cat-fact.herokuapp.com/facts/random?animal";
+    // # promise를 받았을 때 then 을 이용해서 받아봤습니다.
+    // fetch(url)
+    //   .then((response) => response.json())
+    //   .then((json) => {
+    //     console.log("나는 fetch");
+    //     console.log(json);
+    //   });
+
+    // # async / await 버전
+    // async function getCatData() {
+    //   console.log("나는 async / await");
+    //   response = await fetch(url);
+    //   const json = await response.json();
+    //   console.log(json);
+    // }
+
+    async function getCatData() {
+      console.log("고양이");
+      const response = await fetch(url);
+      const cats = await response.json();
+
+      //   const text = cats.map((cat) => cats.text).join("|");
+
+      // 구조 분해 문법
+      // 어떤 객체의 구조를 바로 분해할 수 있는 문법
+      //   const type = cats.map(({ type }) => type).join("|");
+
+      p1.textContent = cats["text"];
+      p2.textContent = cats["type"];
+
+      for (const cat of cats) {
+        console.log(cat);
+      }
+    }
+
+    const button = document.querySelector(".load");
+    const p1 = document.querySelector(".get-container__text");
+    const p2 = document.querySelector(".get-container__type");
+
+    button.addEventListener("click", (e) => {
+      getCatData();
+    });
+  </script>
+</html>
