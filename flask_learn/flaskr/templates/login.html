@@ -1,0 +1,21 @@
+<!-- extends 는 layout html 을 여기서 사용한다는 뜻 -->
+{% extends "layout.html" %}
+<!-- block의 뜻은 레이아웃에 있는 body 영역에 이 페이지가 들어간다는 뜻 -->
+{% block body %}
+  <h2>Login</h2>
+  {% if error %}
+    <p class="error">
+      <strong>Error:</strong>
+      {{ error }}</p>
+  {% endif %}
+  <form action="{{ url_for('login') }}" method="post">
+    <dl>
+      <dt>Username:</dt>
+      <dd><input type="text" name="username"></dd>
+      <dt>Password:</dt>
+      <dd><input type="password" name="password"></dd>
+      <dd><input type="submit" value="Login"></dd>
+    </dl>
+  </form>
+{% endblock %}
+<!-- 블럭의 끝 -->

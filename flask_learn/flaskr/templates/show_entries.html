@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+  <!-- 를 사용하면 그 블럭 내부는 파이썬 코드가 들어간다. -->
+  <!-- if문을 사용하면 if 블럭 내부의 HTML을 보여준다. -->
+  {% if session.logged_in %}
+    <!-- 가 가지는 뜻은 변수나 함수의 리턴을 표시해준다. -->
+    <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+      <dl>
+        <dt>Title:</dt>
+        <dd><input type="text" size="30" name="title"></dd>
+        <dt>Text:</dt>
+        <dd>
+          <textarea name="text" rows="5" cols="40"></textarea>
+        </dd>
+        <dd><input type="submit" value="Share"></dd>
+      </dl>
+    </form>
+    <!-- if문 블럭의 끝 - endif -->
+  {% endif %}
+  <ul class="entries">
+    <!-- for문은 entries 의 길이만큼 블록 내부의 html을 계속 생성한다. -->
+    {% for entry in entries %}
+      <li>
+        <!-- etnry.title 값과 entry.text 값을 여기에 text로 나타내준다. -->
+        <h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+      </li>
+    {% else %}
+      <!-- else 구분은 entries 길이가 0일 경우 나타내준다. -->
+      <li>
+        <em>Unbelievable. No entries here so far</em>
+      </li>
+      <!-- for문 블럭의 끝 -->
+    {% endfor %}
+
+  </ul>
+{% endblock %}
