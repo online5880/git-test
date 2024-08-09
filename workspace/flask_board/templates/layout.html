@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div>
+      <ul>
+        <li>
+          <!-- 지금 문제는 다른 사람들이 내 페이지에 접속해도 -->
+          <!-- 다른 사람들의 주소로 가버리는 문제가 있습니다 -->
+          <!-- 1. 상대경로: http://127.0.0.1:5000를 제거: 웹 기본 기능이지만, 파이썬 문법은 아님 -->
+          <!-- 2. Python 라우터 방식 url_for('add_entry') -->
+          <a href="/">메인 화면으로 가기</a>
+        </li>
+        <li>
+          <a href="{{url_for('view_login')}}">로그인</a>
+        </li>
+        <li>
+          <a href="/board">게시글 목록</a>
+        </li>
+      </ul>
+      <!-- 줄을 그어줘요 -->
+      <hr>
+    </div>
+    {% block body %}{% endblock %}
+  </body>
+
+</html>

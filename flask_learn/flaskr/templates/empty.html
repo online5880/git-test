@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id='entries-contaier'></p>
+  </body>
+  <script>
+    /* // 데이터가 성공적으로 도착하면, 화면에 제목들을 표시
+     const entriesContainer = document.getElementById('entries-container');
+
+     for (const d of data) {
+
+       // 요소 생성
+       const random = Math.floor(Math.random() * 4) + 1;
+       const titleElement = document.createElement('h' + random);
+       const textElement = document.createElement('p')
+
+       // 요소 내용 설정
+       const text = d.title === ''
+         ? '제목없음'
+         : d.title;
+
+       // 랜덤 색상 설정
+       const colors = ['#FF5733', '#33FF57', '#3357FF', '#F0E68C', '#FFC300'];
+       const randomColor = colors[Math.floor(Math.random() * colors.length)];
+       titleElement.style.color = randomColor;
+
+       // 랜덤 폰트 스타일 설정
+       const fonts = ['Arial', 'Georgia', 'Times New Roman', 'Verdana', 'Courier New'];
+       const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+       titleElement.style.fontFamily = randomFont;
+
+       // 텍스트 크기 및 스타일 조정
+       const fontSize = Math.floor(Math.random() * 20) + 16 + 'px'; // 16px ~ 25px
+       titleElement.style.fontSize = fontSize;
+
+       // 랜덤하게 텍스트 앞에 이모티콘 추가
+       const emojis = ['🌟', '🔥', '✨', '💡', '🎉'];
+       const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+       titleElement.textContent = randomEmoji + ' ' + text;
+
+       // 텍스트 굵기 설정
+       titleElement.style.fontWeight = Math.random() > 0.5
+         ? 'bold'
+         : 'normal';
+
+       // body 에 추가
+       document
+         .body
+         .appendChild(titleElement);
+     } */
+
+    async function getApi() {
+      const URL = 'http://127.0.0.1:5000/api/entries'
+      const response = await fetch(URL)
+      const json = await response.json();
+
+      const titles = json.map((entry) => entry.title)
+      console.log(titles)
+      document.write(titles.join(", "))
+    }
+
+    getApi()
+  </script>
+
+</html>

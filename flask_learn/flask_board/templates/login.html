@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div>
+    <h1>로그인 페이지 입니다.</h1>
+    <form action="{{url_for('login')}}" method="post">
+      <input type="text" name="login_id" placeholder='아이디'>
+      <input type="password" name="login_password" placeholder='비밀번호'>
+      <!-- submit 속성은 서버로 요청을 보내는 역할을 한다.-->
+      <!-- 하나의 폼태그안에 버튼이 하나라면 자동으로 type = submit 이다. -->
+      <button type='submit'>로그인</button>
+    </form>
+    {% if error_message %}
+      <h1>{{error_message}}</h1>
+    {% endif %}
+  </div>
+  <script>
+    login_form = document.forms[0]
+    login_form.addEventListener('submit', (event) => {
+
+      // submit 일어나서 화면을 이동하지 않도록 막음
+      event.preventDefault();
+
+      const login_id = login_form['login_id'].value;
+      const login_pw = login_form['login_password'].value;
+
+      if (!login_id) {
+        alert('아이디를 입력해주세요.');
+        login_form['login_id'].focus();
+        return;
+      }
+
+      if (!login_pw) {
+        alert('비밀번호를 입력해주세요.');
+        login_form['login_password'].focus();
+        return;
+      }
+
+      // 검증이 끝남
+      login_form.submit();
+
+    })
+  </script>
+{% endblock body %}

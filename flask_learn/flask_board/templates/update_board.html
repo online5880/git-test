@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div>
+    <h1>게시글 수정</h1>
+    <form action="{{url_for('update_board')}}" method="post">
+      <input type="hidden" name='board_id' value="{{board.id}}">
+      <input type="text" name="title" value="{{board.title}}">
+      <textarea name="content">{{board.content}}</textarea>
+      <button type="submit">게시글 수정</button>
+    </form>
+  </div>
+{% endblock body %}

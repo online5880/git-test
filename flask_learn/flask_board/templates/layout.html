@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>layout</title>
+  </head>
+
+  <body>
+    <div>
+      <ul>
+        <li>
+          <!-- 지금 문제는 다른 사람들이 내 페이지에 접속할 수 없다.-->
+          <!-- 1. '/' 으로 상대경로 이용 -->
+          <!-- 2. 파이썬 라우터 방식 (url_for) 이용하기-->
+          <a href="/">메인 화면으로 가기</a>
+        </li>
+        <li>
+          <a href="/board">게시글 목록</a>
+        </li>
+        {% if session.user %}
+          <li>
+            <a href="{{url_for('logout')}}">로그아웃</a>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{url_for('login')}}">로그인</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+    {% if session.user %}
+      <div>{{session.user.name}}
+        님 환영합니다.</div>
+    {% endif %}
+    <hr>
+    {% block body %}{% endblock body %}
+  </body>
+
+</html>

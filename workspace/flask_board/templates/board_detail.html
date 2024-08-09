@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div>
+    <div>
+      <h1>{{board.title}}</h1>
+      <p>생성일 :
+        {{board.create_date}}
+      </p>
+      <p>수정일 :
+        {{board.update_date}}
+      </p>
+    </div>
+
+    <div>
+      <p>{{board.content}}</p>
+    </div>
+
+    <div id="comments"></div>
+
+  </div>
+  <script>
+    async function getComments() {
+      const response = await fetch("{{url_for('get_board_comments', board_id=board.id)}}");
+      const comments = await response.json();
+      const commentsElement = document.querySelector("#comments");
+      comments.forEach(comment => {
+        const div = document.createElement("div");
+        div.innerHTML = `
+          <div>
+            <p>${comment.name}: ${comment.comment} (${comment.update_date})</p>
+          </div>
+        `;
+        commentsElement.appendChild(div);
+      });
+    }
+
+    getComments();
+  </script>
+{% endblock body %}

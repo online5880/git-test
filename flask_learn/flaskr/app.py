@@ -8,6 +8,7 @@ from flask import (
     request,
     session,
     url_for,
+    jsonify
 )
 from db.db_connection import db_connect
 
@@ -31,13 +32,11 @@ def before_request():
     g.conn = db_connect()
     if g.conn:
         print('DB 연결 성공')
-        
-    print("나 DB 연결할꺼야.")
 
 
 @app.after_request
 def after_request(response):
-    print("나 DB 연결했다.")
+    print("DB 연결했다.")
     return response
 
 
@@ -45,7 +44,7 @@ def after_request(response):
 # 데이터베이스의 연결을 종료한다.
 @app.teardown_request
 def teardown_request(exception):
-    print("나 DB 연결 종료한다.")
+    print("DB 연결 종료한다.")
     # g.conn.close()
 
 
@@ -64,6 +63,53 @@ def show_entries():
 
     # HTML 을 만들어서 내려주는것
     return render_template('show_entries.html', entries=entries)
+
+# 하고 싶은 것:
+# 우리의 플라스크는 html만 받는다.
+# html뿐만 아니라 json 데이터형태로 response 전달하고 싶다.
+@app.route('/api/entries')
+def json_entries():
+    SQL = '''
+            select
+            id, title, text
+            from
+            entries
+            order by id desc
+    '''
+    entries = []
+    with db_connect() as conn:
+        with conn.cursor() as cur:
+            cur.execute(SQL)
+            entries = cur.fetchall()
+    
+    # 파이썬이 가지고 있는 튜플, 리스트, 딕셔너리를
+    # json 문법에 맞게(배열, 자바스크립트 객체) 변경해주는 것
+    return jsonify(entries)
+
+# 실습
+@app.route('/entries')
+def view_entries():
+    # 0. 데이터베이스나, 지금 이 사이트를 이용하여 데이터를 추가한다.
+    SQL = '''
+            select
+            id, title, text
+            from
+            entries
+            order by id desc
+    '''
+    entries = []
+    with db_connect() as conn:
+        with conn.cursor() as cur:
+            cur.execute(SQL)
+            entries = cur.fetchall()
+    data = jsonify(entries)
+    
+    # 1. 이 라우터가 빈 html을 반환하도록 한다.
+    return render_template("empty.html")
+
+    # 2. JS에서 fetch() 를 이용해서 entries 데이터가 js로 오도록한다.
+    # 3. js를 이용하여 화면에 entries 의 제목들이 나오도록 한다.
+    
 
 
 # method=POST 는 POST 요청만 받는다는 뜻이다.
@@ -131,3 +177,4 @@ def logout():
 
 if __name__ == "__main__":
     app.run()
+    
