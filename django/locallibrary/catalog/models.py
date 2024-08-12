@@ -38,6 +38,19 @@ class Book(models.Model):
     
     def get_absolute_url(self):
         return reverse("book-detail", args=[str(self.id)])
+    
+    # genre 를 보여주기 위한 커스텀 필드
+    def display_genre(self):
+        # data = []
+        # for genre in self.genre.all():
+        #     data += genre.name
+        
+        #return ', '.join(data[:3])
+        
+        # 위 코드와 똑같다.
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = 'Genre'
 
 
 class BookInstance(models.Model):
