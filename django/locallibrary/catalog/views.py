@@ -17,6 +17,9 @@ def index(request):
     # ?keyword=asdf 받을 수 있게해야한다.
     keyword = request.GET.get('keyword')
     
+    # 세션을 가져오는 방법
+    # request.session.get('mysession')
+    
     # Django ORM
     num_books = Book.objects.all().count()
     num_instances = BookInstance.objects.all().count()
@@ -30,15 +33,18 @@ def index(request):
     num_authors = Author.objects.count()
     
     # keyword로 장르와 책들의 개수를 가져온다.
-    
     num_books_by_keyword = Book.objects.filter(title__exact=keyword).count()
+    
+    num_visits = request.session.get('num_visits',0)
+    request.session['num_visits'] = num_visits + 1
 
     context = {
         'num_books' : num_books,
         'num_instances' : num_instances,
         'num_instances_available' : num_instances_available,
         'num_authors' : num_authors,
-        'num_books_by_keyword' : num_books_by_keyword
+        'num_books_by_keyword' : num_books_by_keyword,
+        'num_visits' : num_visits,
     }
     
     return render(request,'index.html',context=context)

@@ -31,3 +31,8 @@ urlpatterns = [
 
 # 정적 페이지 관리
 urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# 인증용 url 만들기
+urlpatterns+= [
+    path('accounts/',include('django.contrib.auth.urls'))
+]
