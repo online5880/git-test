@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 # path 관리
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # catalog > urls.py 를 바라본다.
     path('catalog/', include('catalog.urls')),
     path('', RedirectView.as_view(url='/catalog/', permanent=True)),
 ]
