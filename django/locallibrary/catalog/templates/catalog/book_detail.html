@@ -11,6 +11,11 @@
   </p>
   <!-- author detail link not yet defined -->
   <p>
+    {% if book.img_url != ''%}
+      <img src="{{book.img_url}}" alt="Description of image" width="50%">
+    {% endif %}
+  </p>
+  <p>
     <strong>Summary:</strong>
     {{ book.summary }}</p>
   <p>

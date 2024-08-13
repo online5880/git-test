@@ -8,18 +8,24 @@ from catalog import views
 urlpatterns = [
     # /catalog/
     # 함수로 지정
-    path('', views.index, name='index'),
-    
-    # /catalog/books/ 
+    path("", views.index, name="index"),
+    # /catalog/books/
     # 클래스로 생성
-    path('books',views.BookListView.as_view(),name='books'),
-    
-     # /catalog/book/????
+    path("books", views.BookListView.as_view(), name="books"),
+    # /catalog/book/????
     # 클래스로 생성
-    path('book/<int:pk>',views.BookDetailView.as_view(),name='book-detail'), # type: ignore
-    
+    path("book/<int:pk>", views.BookDetailView.as_view(),
+         name="book-detail"),  # type: ignore
     # /catalog/authors/
-    path('authors',views.AuthorListView.as_view(),name='authors'),
+    path("authors", views.AuthorListView.as_view(), name="authors"),
+    path("authors/<int:pk>",
+         views.AuthorDetailView.as_view(),
+         name="author-detail"),  # type: ignore
+    path("mybooks/",
+         views.LoanedBooksByUserListView.as_view(),
+         name="my-borrowed"),
     
-   path('authors/<int:pk>',views.AuthorDetailView.as_view(),name='author-detail'), # type: ignore    
+    path("book/<uuid:pk>/renew/",
+         views.renew_book_librarian,
+         name="renew-book-librarian"),
 ]
