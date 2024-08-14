@@ -1,7 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
-from datetime import date
+import datetime
+from django.utils import timezone
 
 # 랜덤값을 만들어준다.
 import uuid
@@ -89,10 +90,10 @@ class BookInstance(models.Model):
     # DB에서 datetime은 string이다.
     due_back = models.DateTimeField(null=True, blank=True)
 
-    borrow = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               on_delete=models.SET_NULL,
-                               null=True,
-                               blank=True)
+    borrower = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 on_delete=models.SET_NULL,
+                                 null=True,
+                                 blank=True)
 
     # 공통 코드
     LOAN_STATUS = (
@@ -121,7 +122,20 @@ class BookInstance(models.Model):
 
     @property
     def is_overdue(self):
-        return bool(self.due_back and date.today() > self.due_back)
+        # 현재 시간 가져오기 (Django의 timezone 모듈 사용)
+        now = timezone.now()
+
+        # due_back이 offset-naive라면 aware로 변환
+        if timezone.is_naive(self.due_back):
+            due_back_time = timezone.make_aware(
+                self.due_back, timezone.get_current_timezone())
+        else:
+            due_back_time = self.due_back
+
+        # 현재 시간과 반납 기한을 비교
+        if self.due_back and now > due_back_time:
+            return True
+        return False
 
 
 class Author(models.Model):

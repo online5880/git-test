@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name="bookinstance",
-            name="borrow",
+            name="borrower",
             field=models.ForeignKey(
                 blank=True,
                 null=True,

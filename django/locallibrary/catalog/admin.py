@@ -56,6 +56,6 @@ class BookInstanceAdmin(admin.ModelAdmin):
             "fields": ("book", "imprint", "id")
         }),
         ("Availability", {
-            "fields": ("status", "due_back", "borrow")
+            "fields": ("status", "due_back", "borrower")
         }),
     )

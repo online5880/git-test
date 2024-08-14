@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <!-- create랑 update는 기본적으로 form 템플릿을 같이 사용-->
+  <!-- author-create와 author-update가 이 템플릿을 같이 사용한다.-->
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit"/>
+  </form>
+{% endblock %}

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # catalog  애플리케이션을 등록하기 위해서는
     # 폴더  -> apps.py -> config 클래스를 여기에 등록해야 한다.
     "catalog.apps.CatalogConfig",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [

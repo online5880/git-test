@@ -1,0 +1,17 @@
+// get test
+GET http://localhost:8000/catalog/api/books
+
+// post 테스트
+POST http://localhost:8000/catalog/api/books
+
+Content-Type: application/json
+{
+    "title": "notebook",
+    "summary": "이건 책이야",
+    "isbn": "1234003412343",
+    "img_url": null,
+    "author": 1,
+    "genre": [
+        1
+    ]
+}
