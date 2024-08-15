@@ -1,0 +1,14 @@
+// GET 요청 테스트
+// GET http://localhost:8000/catalog/api/books
+
+// POST 요청 테스트
+POST http://localhost:8000/catalog/api/books
+Content-Type: application/json
+
+{
+    "title": "테스트 책",
+    "summary": "테스트 하기위 해 책을 만들었습니다.",
+    "isbn": "3957563285746",
+    "author": 1,
+    "genre": [1, 2]
+}
