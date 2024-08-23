@@ -25,7 +25,18 @@
       {% endif %}
     </div>
 
-    <div id="comments"></div>
+    <h2>댓글</h2>
+    <div id='comments'>
+      {% for comment in comments %}
+        <p>{{ comment.comment }}</p>
+        <small>{{ comment.create_date }}</small>
+      {% endfor %}
+    </div>
+
+    <form method="post" action="{{ url_for('add_comment', board_id=board.id) }}">
+      <textarea name="comment"></textarea><br>
+      <button type="submit">댓글추가</button>
+    </form>
 
   </div>
   <script>
